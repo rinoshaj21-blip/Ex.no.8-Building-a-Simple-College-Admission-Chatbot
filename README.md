@@ -47,14 +47,209 @@ Output
 ●	The remaining queries about dates, hostel facility and contact details are correctly matched to their respective intents.
 ●	The conversation ends gracefully with a goodbye message once the user types “Bye”, terminating the chat loop.
 <img width="660" height="380" alt="image" src="https://github.com/user-attachments/assets/698ac90d-7962-406c-b381-03d16bedfb3b" />
+### Code
+
+import re
+import random
+
+knowledge_base = {
+
+    "greeting": {
+        "patterns": [
+            r"\bhi\b",
+            r"\bhello\b",
+            r"\bhey\b",
+            r"\bgood morning\b",
+            r"\bgood afternoon\b"
+        ],
+        "responses": [
+            "Hello! Welcome to the College Admission Desk. How can I assist you today?"
+        ]
+    },
+
+    "courses": {
+        "patterns": [
+            r"\bcourse\b",
+            r"\bcourses\b",
+            r"\bprogram\b",
+            r"\bprograms\b",
+            r"\bbranch\b",
+            r"\bbranches\b",
+            r"\bdepartment\b",
+            r"\bdepartments\b",
+            r"\bspecialization\b"
+        ],
+        "responses": [
+            "We offer B.Tech programs in Information Technology, Computer Science, ECE, EEE and Mechanical Engineering, along with M.Tech and MBA programs."
+        ]
+    },
+
+    "eligibility": {
+        "patterns": [
+            r"\beligibility\b",
+            r"\bcriteria\b",
+            r"\brequirement\b",
+            r"\brequirements\b",
+            r"\bqualification\b"
+        ],
+        "responses": [
+            "The eligibility criteria for B.Tech programs typically include a minimum percentage in 10+2 with Physics, Chemistry, and Mathematics. Specific requirements may vary by program."
+        ]
+    },
+
+    "fees": {
+        "patterns": [
+            r"\bfee\b",
+            r"\bfees\b",
+            r"\btuition\b",
+            r"\bcost\b"
+        ],
+        "responses": [
+            "Tuition fees vary depending on the program. Please refer to the official website or contact the admissions office for the detailed fee structure."
+        ]
+    },
+
+    "dates": {
+        "patterns": [
+            r"\blast date\b",
+            r"\bdeadline\b",
+            r"\bapplication date\b",
+            r"\badmission date\b",
+            r"\bimportant dates\b"
+        ],
+        "responses": [
+            "Application deadlines are usually announced on the official website. Please check the admissions section for the latest updates on important dates."
+        ]
+    },
+
+    "application_process": {
+        "patterns": [
+            r"\bhow to apply\b",
+            r"\bhow can i apply\b",
+            r"\bapply for admission\b",
+            r"\bapplication process\b"
+        ],
+        "responses": [
+            "You can apply online through our admissions portal. The process involves filling out the application form, uploading the required documents, and paying the application fee."
+        ]
+    },
+
+    "documents": {
+        "patterns": [
+            r"\bdocument\b",
+            r"\bdocuments\b",
+            r"\bwhat to submit\b",
+            r"\brequired documents\b"
+        ],
+        "responses": [
+            "Required documents typically include academic transcripts, passport-sized photographs, identity proof, and caste certificate if applicable. A detailed list is available on the application portal."
+        ]
+    },
+
+    "hostel": {
+        "patterns": [
+            r"\bhostel\b",
+            r"\baccommodation\b",
+            r"\bhousing\b"
+        ],
+        "responses": [
+            "Yes, we provide separate hostel facilities for boys and girls on campus. You can find more details regarding amenities and fees on the official website."
+        ]
+    },
+
+    "contact": {
+        "patterns": [
+            r"\bcontact\b",
+            r"\bphone\b",
+            r"\bemail\b",
+            r"\baddress\b"
+        ],
+        "responses": [
+            "You can reach our admissions office at [Phone Number] or email us at [Email Address]. Our campus is located at [Address]."
+        ]
+    },
+
+    "thanks": {
+        "patterns": [
+            r"\bthank\b",
+            r"\bthanks\b",
+            r"\bthank you\b"
+        ],
+        "responses": [
+            "You're welcome! Let me know if you have any more questions."
+        ]
+    },
+
+    "goodbye": {
+        "patterns": [
+            r"\bbye\b",
+            r"\bgoodbye\b",
+            r"\bsee you\b",
+            r"\bexit\b",
+            r"\bquit\b"
+        ],
+        "responses": [
+            "Goodbye! Have a great day!"
+        ]
+    }
+}
+
+fallback_responses =
+[
+
+    "I'm sorry, I did not quite understand that. Could you please rephrase your question?",
+    "I can help you with courses, eligibility, fees, application process, documents, admission dates, hostel and contact details."]
+
+def match_intent(user_input):
+
+    user_input = user_input.lower().strip()
+
+    for intent, data in knowledge_base.items():
+        for pattern in data["patterns"]:
+            if re.search(pattern, user_input):
+                return intent
+
+    return None
+
+def get_response(user_input):
+
+    intent = match_intent(user_input)
+
+    if intent:
+        return random.choice(knowledge_base[intent]["responses"])
+
+    return random.choice(fallback_responses)
+
+def chat():
+
+    print("=" * 60)
+    print("COLLEGE ADMISSION CHATBOT")
+    print("=" * 60)
+    print("Welcome! I can help you with college admission queries.")
+    print("Type 'bye' or 'exit' to end the conversation.\n")
+
+    while True:
+        user_input = input("You: ")
+
+        if not user_input.strip():
+            print("Bot: Please enter a question.")
+            continue
+
+        intent = match_intent(user_input)
+        response = get_response(user_input)
+
+        print("Bot:", response)
+
+        if intent == "goodbye":
+            break
+            
+if __name__ == "__main__":
+
+    chat()
+   
+### Output
+<img width="1672" height="672" alt="image" src="https://github.com/user-attachments/assets/515fafb7-2a24-486c-9618-3faf5a45a0ae" />
+<img width="658" height="153" alt="image" src="https://github.com/user-attachments/assets/12489853-fcc5-4c7f-9631-da457ef8581b" />
+
 ## Conclusion
 Thus, a simple rule-based College Admission Chatbot was successfully designed, implemented and tested using Python. The chatbot uses a keyword/pattern-based knowledge base to identify the intent behind a user's question and responds with an appropriate, pre-defined answer covering courses, eligibility, fees, application process, documents, dates, hostel and contact information. The experiment demonstrates the fundamental building blocks — knowledge base design, intent matching and response generation — on which more advanced NLP-based and AI-based chatbots are built.
-
-
-
-
-
-
-
-
-
