@@ -248,8 +248,8 @@ if __name__ == "__main__":
     chat()
    
 ### Output
-<img width="1672" height="672" alt="image" src="https://github.com/user-attachments/assets/515fafb7-2a24-486c-9618-3faf5a45a0ae" />
-<img width="658" height="153" alt="image" src="https://github.com/user-attachments/assets/12489853-fcc5-4c7f-9631-da457ef8581b" />
+<img width="1263" height="731" alt="Screenshot 2026-09-15 215715" src="https://github.com/user-attachments/assets/409193a9-2b5e-464d-bd23-6d29d89c7b11" />
+
 
 ## Conclusion
 Thus, a simple rule-based College Admission Chatbot was successfully designed, implemented and tested using Python. The chatbot uses a keyword/pattern-based knowledge base to identify the intent behind a user's question and responds with an appropriate, pre-defined answer covering courses, eligibility, fees, application process, documents, dates, hostel and contact information. The experiment demonstrates the fundamental building blocks — knowledge base design, intent matching and response generation — on which more advanced NLP-based and AI-based chatbots are built.
