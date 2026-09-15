@@ -248,7 +248,8 @@ if __name__ == "__main__":
     chat()
    
 ### Output
-<img width="1263" height="731" alt="Screenshot 2026-09-15 215715" src="https://github.com/user-attachments/assets/409193a9-2b5e-464d-bd23-6d29d89c7b11" />
+<img width="1263" height="731" alt="Screenshot 2026-09-15 215715" src="https://github.com/user-attachments/assets/4f8a7c4c-2d5f-43f1-adbf-dc3f08019f19" />
+
 
 
 ## Conclusion
